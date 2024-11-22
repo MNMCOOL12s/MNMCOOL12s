@@ -3,76 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Clicker Game</title>
+    <title>Simple Cookie Clicker</title>
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f7f7f7;
             font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
         }
-        #cookie {
-            width: 200px;
-            height: 200px;
-            background-color: #d2b48c;
-            border-radius: 50%;
-            border: 5px solid #8b4513;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+        .cookie-container {
+            margin: 20px;
+        }
+        .cookie-button {
+            padding: 20px 40px;
             font-size: 24px;
-            color: #fff;
-        }
-        #score {
-            margin-top: 20px;
-            font-size: 24px;
-        }
-        #upgrade {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
             cursor: pointer;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .cookie-button:hover {
+            background-color: #ffb300;
+        }
+        .cookie-count {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div id="cookie">🍪</div>
-    <div id="score">Cookies: 0</div>
-    <button id="upgrade">Upgrade (Cost: 50 cookies)</button>
+    <h1>Cookie Clicker Game</h1>
+    
+    <div class="cookie-container">
+        <button class="cookie-button" onclick="collectCookie()">Click me to collect a cookie!</button>
+        <div class="cookie-count">
+            Cookies: <span id="cookieCount">0</span>
+        </div>
+    </div>
 
     <script>
-        let cookies = 0;
-        let cookiePerClick = 1;
-        let upgradeCost = 50;
+        let cookieCount = 0;
 
-        const cookieElement = document.getElementById("cookie");
-        const scoreElement = document.getElementById("score");
-        const upgradeButton = document.getElementById("upgrade");
-
-        cookieElement.addEventListener("click", () => {
-            cookies += cookiePerClick;
-            updateScore();
-        });
-
-        upgradeButton.addEventListener("click", () => {
-            if (cookies >= upgradeCost) {
-                cookies -= upgradeCost;
-                cookiePerClick++;
-                upgradeCost = Math.floor(upgradeCost * 1.5); // Increase cost for next upgrade
-                upgradeButton.innerText = `Upgrade (Cost: ${upgradeCost} cookies)`;
-                updateScore();
-            } else {
-                alert("Not enough cookies!");
-            }
-        });
-
-        function updateScore() {
-            scoreElement.innerText = `Cookies: ${cookies}`;
+        // Function to update the cookie count
+        function collectCookie() {
+            cookieCount++;
+            document.getElementById("cookieCount").textContent = cookieCount;
         }
     </script>
 
